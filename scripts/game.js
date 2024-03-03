@@ -1,4 +1,4 @@
-const words = ["hangman" , "test"];
+const words = ["Python","html","css","bootstrap","js"];
 const getRandomWord = () => {
   const randomIndex = Math.floor(Math.random() * words.length);
   return words[randomIndex].toUpperCase();
@@ -38,6 +38,29 @@ const startNewGame = () => {
       startNewGame(); 
     }
   };
-
 }
+  const handleGuess = (guessedLetter) => {
+    if (!guessedLetters.includes(guessedLetter)) {
+      guessedLetters.push(guessedLetter);
+
+      if (isCorrectGuess(randomWord, guessedLetter)) {
+        const updatedAnswer = updateAnswer(randomWord, guessedLetters);
+        answerSection.innerHTML = updatedAnswer;
+
+        if (!updatedAnswer.includes("-")) {
+          alert("Congratulations! You guessed the word!");
+          startNewGame(); 
+        }
+      } else {
+        
+        incorrectGuesses++;
+
+        
+        handleIncorrectGuess(incorrectGuesses, hangmanFunctions, randomWord);
+      }
+    }
+  };
+
+
+
 startNewGame();
