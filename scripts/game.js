@@ -1,4 +1,4 @@
-const words = ["Python","html","css","bootstrap","js"];
+const words = ["Python","html","css","bootstrap","js];
 const getRandomWord = () => {
   const randomIndex = Math.floor(Math.random() * words.length);
   return words[randomIndex].toUpperCase();
@@ -38,7 +38,7 @@ const startNewGame = () => {
       startNewGame(); 
     }
   };
-}
+
   const handleGuess = (guessedLetter) => {
     if (!guessedLetters.includes(guessedLetter)) {
       guessedLetters.push(guessedLetter);
@@ -61,6 +61,24 @@ const startNewGame = () => {
     }
   };
 
+  
+  const letters = document.querySelectorAll(".letter");
+  letters.forEach((letter) => {
+    letter.addEventListener("click", () => {
+      
+      letter.classList.add("pressed");
+      handleGuess(letter.innerText);
+    });
+  });
+
+  
+  document.addEventListener("keydown", (event) => {
+    const keyPressed = event.key.toUpperCase();
+    if (/^[A-Z]$/.test(keyPressed) && !guessedLetters.includes(keyPressed)) {
+      handleGuess(keyPressed);
+    }
+  });
+};
 
 
 startNewGame();
