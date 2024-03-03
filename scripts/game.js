@@ -1,4 +1,4 @@
-const words = ["Python","html","css","bootstrap","js];
+const words = ["Python","html","css","bootstrap","js"];
 const getRandomWord = () => {
   const randomIndex = Math.floor(Math.random() * words.length);
   return words[randomIndex].toUpperCase();
